@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(57, 57, 57);
+  margin: 0;
+  height: 100vh;
+  user-select: none;
+}
+
+main{
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+}
+
+section {
+  position: relative;
+}
+
+#buttons{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  justify-content: center;
+  padding-block: 8px;
+  padding-inline: 8px;
+  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.75);
+}
+
+#pescar{
+  justify-self: end;
+}
+
+#cartas {
+  pointer-events: none;
+}
+
+#mao, #ad {
+  background: linear-gradient(0deg, rgb(127, 60, 21), rgb(184, 98, 48));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: visible;
+  overflow-x: auto;
+}
+
+#ad{
+  pointer-events: none;
+  background: linear-gradient(90deg, rgb(127, 60, 21), rgb(184, 98, 48));
+}
+
+#mao.Adversario{
+  pointer-events: none;
+  opacity: 0.5;
+  filter: brightness(80%) contrast(90%);
+}
+
+.underline, .CardItem:is(.underline)::before, .CardItem:is(.underline)::after{
+  text-decoration: underline;
+  line-height: 0.8em;
+}
+
+.CardItem:not(.adver)::before, .CardItem:not(.adver)::after{
+  content: attr(data-content);
+  position: absolute;
+  font-weight: 600;
+  font-size: 16px;
+  text-align: center;
+  -webkit-text-stroke: 1px rgb(44, 44, 44);
+  -webkit-text-fill-color: white;
+  z-index: 5;
+}
+
+.CardItem::before{
+  top: 0.20em;
+  left: 0.5em;
+}
+
+.CardItem::after{
+  bottom: 0.20em;
+  right: 0.5em;
+  transform: rotate(180deg);
+}
+
+.CardItem{
+  width: 80px;
+  flex: 0 0 80px;
+  border-radius: 6px;
+  margin: 8px;
+  height: 128px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 64px;
+
+  -webkit-text-stroke: 3px rgb(44, 44, 44);
+  -webkit-text-fill-color: white;
+
+  image-rendering: pixelated;
+  background: url(img/back.png);
+
+  position: relative;
+  opacity: 0;
+  animation: entry 1s cubic-bezier(0, 1.2, 1, 1.25) forwards;
+
+  transition: all 0.2s cubic-bezier(0, 1.2, 1, 1.2), box-shadow 0s;
+}
+
+@keyframes entry {
+  0%{
+    opacity: 0;
+    scale: 1.5 1.3;
+  }
+  100%{
+    scale: 1 1;
+    opacity: 1;
+  }
+}
+
+.adver{
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 0px transparent;
+  /* background-color: rgb(226, 120, 218) !important; */
+  background: url(img/back\ Adver.png), radial-gradient(circle at center center, rgb(226, 120, 218), rgb(180, 75, 171));
+  box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
+}
+
+.CardItem:not(.adver):hover {
+  filter: brightness(90%) grayscale(5%);
+  /* box-shadow: 0px 0px 0px 1px white; */
+  z-index: 2;
+  backdrop-filter: blur(16px);
+}
+
+#mao:not(.adver):hover .CardItem:not(:hover){
+  filter: brightness(0.5) grayscale(0.5);
+  box-shadow: inset 0 0 16px 4px rgba(0, 0, 0, 0.5);
+}
+
+.CardItem:not(.adver):active {
+  filter: brightness(120%) saturate(100%);
+  box-shadow: 0px 0px 0px 2px white;
+}
+
+.amarelo {
+  background-color: rgb(240, 240, 16);
+}
+
+.verde {
+  background-color: rgb(25, 203, 25);
+}
+
+.vermelho {
+  background-color: rgb(241, 17, 17);
+}
+
+.azul {
+  background-color: rgb(20, 20, 217);
+}
+
+button {
+  margin: 4px 4px;
+  padding: 4px 8px;
+  background-color: rgb(26, 92, 145);
+  border: solid 2px rgb(91, 169, 232);
+  border-radius: 16px;
+  color: rgb(224, 224, 224);
+  cursor: pointer;
+  font-size: 32px;
+  font-weight: 600;
+}
+
+button:hover {
+  filter: brightness(110%);
+  color: rgb(255, 255, 255);
+}
+
+button:active {
+  filter: brightness(80%);
+}
+
+
+
+audio{
+  display: none;
+}
