@@ -55,7 +55,7 @@ section {
   background: linear-gradient(90deg, rgb(127, 60, 21), rgb(184, 98, 48));
 }
 
-#mao.Adversario{
+.Adversario{
   pointer-events: none;
   opacity: 0.5;
   filter: brightness(80%) contrast(90%);
@@ -187,8 +187,6 @@ button:hover {
 button:active {
   filter: brightness(80%);
 }
-
-
 
 audio{
   display: none;
