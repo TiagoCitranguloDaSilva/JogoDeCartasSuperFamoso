@@ -2,7 +2,8 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  background-color: rgb(57, 57, 57);
+  /* background-color: rgb(57, 57, 57); */
+  background: radial-gradient(circle at center center, rgb(80, 86, 92), rgb(34, 37, 40));
   margin: 0;
   height: 100vh;
   user-select: none;
@@ -30,7 +31,7 @@ section {
   justify-content: center;
   padding-block: 8px;
   padding-inline: 8px;
-  box-shadow: inset 0px 0px 4px 2px rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0px 0px 32px 8px rgba(0, 0, 0, 0.75);
 }
 
 #pescar{
@@ -48,6 +49,7 @@ section {
   align-items: center;
   overflow-y: visible;
   overflow-x: auto;
+  min-height: 144px;
 }
 
 #ad{
@@ -55,10 +57,11 @@ section {
   background: linear-gradient(90deg, rgb(127, 60, 21), rgb(184, 98, 48));
 }
 
-.Adversario{
+.OpponentIsPlaying{
   pointer-events: none;
   opacity: 0.5;
   filter: brightness(80%) contrast(90%);
+  transition: 0.5s ease-out;
 }
 
 .underline, .CardItem:is(.underline)::before, .CardItem:is(.underline)::after{
@@ -66,7 +69,7 @@ section {
   line-height: 0.8em;
 }
 
-.CardItem:not(.adver)::before, .CardItem:not(.adver)::after{
+.CardItem:not(.Opponent)::before, .CardItem:not(.Opponent)::after{
   content: attr(data-content);
   position: absolute;
   font-weight: 600;
@@ -115,6 +118,13 @@ section {
   transition: all 0.2s cubic-bezier(0, 1.2, 1, 1.2), box-shadow 0s;
 }
 
+.CantPlayThisCard{
+  filter: brightness(50%) saturate(50%) !important;
+  opacity: 0.25 !important;
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0) !important;
+  pointer-events: none;
+}
+
 @keyframes entry {
   0%{
     opacity: 0;
@@ -126,7 +136,7 @@ section {
   }
 }
 
-.adver{
+.Opponent{
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0px transparent;
   /* background-color: rgb(226, 120, 218) !important; */
@@ -134,19 +144,14 @@ section {
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
 }
 
-.CardItem:not(.adver):hover {
+.CardItem:not(.Opponent, .CantPlayThisCard):hover {
   filter: brightness(90%) grayscale(5%);
   /* box-shadow: 0px 0px 0px 1px white; */
   z-index: 2;
   backdrop-filter: blur(16px);
 }
 
-#mao:not(.adver):hover .CardItem:not(:hover){
-  filter: brightness(0.5) grayscale(0.5);
-  box-shadow: inset 0 0 16px 4px rgba(0, 0, 0, 0.5);
-}
-
-.CardItem:not(.adver):active {
+.CardItem:not(.Opponent, .CantPlayThisCard):active {
   filter: brightness(120%) saturate(100%);
   box-shadow: 0px 0px 0px 2px white;
 }
@@ -172,6 +177,7 @@ button {
   padding: 4px 8px;
   background-color: rgb(26, 92, 145);
   border: solid 2px rgb(91, 169, 232);
+  box-shadow: 0 4px 0px rgb(46, 107, 157);
   border-radius: 16px;
   color: rgb(224, 224, 224);
   cursor: pointer;
@@ -182,10 +188,20 @@ button {
 button:hover {
   filter: brightness(110%);
   color: rgb(255, 255, 255);
+  box-shadow: 0 2px 0px rgb(46, 107, 157);
+  transform: translateY(2px);
 }
 
 button:active {
   filter: brightness(80%);
+  transform: translateY(4px);
+  box-shadow: 0 0px 0px rgb(46, 107, 157);
+}
+
+.TemQuePescar{
+  outline: white solid 2px !important;
+  box-shadow: 0 0 0 100vh rgba(0, 0, 0, 0.4) !important;
+  z-index: 100;
 }
 
 audio{
