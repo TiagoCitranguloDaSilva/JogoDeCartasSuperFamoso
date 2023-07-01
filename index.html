@@ -1,45 +1,44 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Um Jogo de Cartas</title>
-    <link rel="shortcut icon" href="img/Icon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="img/Icon.png" type="image/x-icon" />
 
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onclick="StartMusic()">
     <main>
-        <section id="ad">
-
-        </section>
-        <div id="buttons">
-            <button onclick="" id="pescar">Pescar</button>
-            <section id="cartas">
-
-            </section>
-        </div>
-        <section id="mao">            
-        </section>
+      <section id="ad"></section>
+      <div id="buttons">
+        <button onclick="" id="pescar">Pescar</button>
+        <section id="cartas"></section>
+      </div>
+      <section id="mao"></section>
     </main>
 
-    <audio src="audios/Uno Giovanni 1.ogg" id="Giovanni1" controls></audio>
-    <audio src="audios/Uno Giovanni 2.ogg" id="Giovanni2" controls></audio>
-    <audio src="audios/Uno Giovanni 3.ogg" id="Giovanni3" controls></audio>
-    <audio src="audios/Uno Giovanni 4.ogg" id="Giovanni4" controls></audio>
+    <div class="audios">
+      <audio src="audios/Uno Giovanni 1.ogg" id="Giovanni1" controls></audio>
+      <audio src="audios/Uno Giovanni 2.ogg" id="Giovanni2" controls></audio>
+      <audio src="audios/Uno Giovanni 3.ogg" id="Giovanni3" controls></audio>
+      <audio src="audios/Uno Giovanni 4.ogg" id="Giovanni4" controls></audio>
 
-    <audio src="audios/Uno Tiago 1.ogg" id="Tiago1" controls></audio>
-    <audio src="audios/Uno Tiago 2.ogg" id="Tiago2" controls></audio>
-    <audio src="audios/Uno Tiago 3.ogg" id="Tiago3" controls></audio>
-    <audio src="audios/Uno Tiago 4.ogg" id="Tiago4" controls></audio>
+      <audio src="audios/Uno Tiago 1.ogg" id="Tiago1" controls></audio>
+      <audio src="audios/Uno Tiago 2.ogg" id="Tiago2" controls></audio>
+      <audio src="audios/Uno Tiago 3.ogg" id="Tiago3" controls></audio>
+      <audio src="audios/Uno Tiago 4.ogg" id="Tiago4" controls></audio>
 
-    <audio src="audios/Flip Card 1.mp3" id="FlipCard1" controls></audio>
-    <audio src="audios/Flip Card 2.mp3" id="FlipCard2" controls></audio>
-    <audio src="audios/Flip Card 3.mp3" id="FlipCard3" controls></audio>
-    <audio src="audios/Flip Card 4.mp3" id="FlipCard4" controls></audio>
+      <audio src="audios/Flip Card 1.mp3" id="FlipCard1" controls></audio>
+      <audio src="audios/Flip Card 2.mp3" id="FlipCard2" controls></audio>
+      <audio src="audios/Flip Card 3.mp3" id="FlipCard3" controls></audio>
+      <audio src="audios/Flip Card 4.mp3" id="FlipCard4" controls></audio>
 
-    <!-- <script src="script.js"></script> -->
-    <!-- onload="inicio()" -->
+      <audio src="audios/Music.mp3" id="Music" controls></audio>
+      <audio src="audios/Win.mp3" id="Win" controls></audio>
+      <audio src="audios/Lose.mp3" id="Lose" controls></audio>
+    </div>
+
     <script src="Code.js"></script>
-</body>
+  </body>
 </html>
