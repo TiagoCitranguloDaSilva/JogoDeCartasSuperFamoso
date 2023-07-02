@@ -41,8 +41,15 @@ document.onkeydown = (e) => {
   } else if (e.code == "ArrowDown") {
     let value = Music.volume - 0.1;
     Music.volume = clamp(value, 0, 1);
+  } else if (e.code == "ArrowLeft") {
+    let value = Music.playbackRate - 0.1;
+    Music.playbackRate = clamp(value, 0.1, 2);
+  } else if (e.code == "ArrowRight") {
+    let value = Music.playbackRate + 0.1;
+    Music.playbackRate = clamp(value, 0.1, 2);
   } else if (e.code == "KeyM") {
     Music.muted = !Music.muted;
+    Music.playbackRate = 1;
   }
 };
 
@@ -51,7 +58,7 @@ function StartMusic() {
   Music.loop = "true";
   Music.volume = 0.3;
   // Music.playbackRate = 1;
-  // Music.play();
+  Music.play();
 
   document.getElementsByTagName("body")[0].removeAttribute("onclick");
 }
