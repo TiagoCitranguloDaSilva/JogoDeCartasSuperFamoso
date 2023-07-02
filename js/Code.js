@@ -3,7 +3,7 @@
 var UserHand = document.getElementById("mao");
 
 // Essa é a mão do usuario
-var maoOpponent= document.getElementById("ad");
+var maoOpponent = document.getElementById("ad");
 
 // Essa é a area das cartas
 var mesaCartas = document.getElementById("cartas");
@@ -20,8 +20,9 @@ var vez = "User";
 
 var OpponentAchouCarta = false;
 
-var CssFunction = "font-size: 1.5em; font-weight: 700; background-color: rgba(255, 255, 255, 0.5);" + 
-"color: black; border-radius: 16px; padding-block: 0.25em; padding-inline: 0.5em;";
+var CssFunction =
+  "font-size: 1.5em; font-weight: 700; background-color: rgba(255, 255, 255, 0.5);" +
+  "color: black; border-radius: 16px; padding-block: 0.25em; padding-inline: 0.5em;";
 
 function CreateCard(WhereTo) {
   // console.log(`%cCreateCard('${WhereTo}')`, CssFunction);
@@ -65,7 +66,7 @@ function CreateCard(WhereTo) {
 
 function RandomizeValues() {
   // Pega um número aleatorio
-  let NumeroAleatorio = RandomFrom(0, (cartasPossiveis.length - 1));
+  let NumeroAleatorio = RandomFrom(0, cartasPossiveis.length - 1);
 
   // Ele seleciona a array dentro das cartas
   let Selecionado = cartasPossiveis[NumeroAleatorio];
@@ -109,10 +110,10 @@ function OnStart() {
 OnStart();
 
 // Muda as cartas de lugar
-function PlayCard(ElementoClicado, where, Tent = '') {
-  AnteriorMao = UserHand.children.length
-  AnteriorAd = maoOpponent.children.length
-   
+function PlayCard(ElementoClicado, where, Tent = "") {
+  AnteriorMao = UserHand.children.length;
+  AnteriorAd = maoOpponent.children.length;
+
   // console.log(`%cPlayCard('${ElementoClicado.classList} + ${ElementoClicado.id}', ${where}')`, CssFunction);
   // Deleta a carta selecionada
   let Tirou = DeleteCard(ElementoClicado, where);
@@ -124,22 +125,22 @@ function PlayCard(ElementoClicado, where, Tent = '') {
   //   }
   // }
 
-  if(verificacoes('mao', 'TemCartas') == 0){
-    alert('Parabéns, você ganhou!');
+  if (verificacoes("mao", "TemCartas") == 0) {
+    alert("Parabéns, você ganhou!");
     PlayWinAudio();
-    window.location.reload()
-    return
+    window.location.reload();
+    return;
   }
-  if(verificacoes('ad', 'TemCartas') == 0){
-    alert('O adversário ganhou!');
+  if (verificacoes("ad", "TemCartas") == 0) {
+    alert("O adversário ganhou!");
     PlayLoseAudio();
-    window.location.reload()
-    return
+    window.location.reload();
+    return;
   }
-  if(verificacoes('mao', 'TemCartas') == 1 && AnteriorMao == 2){
+  if (verificacoes("mao", "TemCartas") == 1 && AnteriorMao == 2) {
     PlayTiagoAudio();
   }
-  if(verificacoes('ad', 'TemCartas') == 1 && AnteriorAd == 2){
+  if (verificacoes("ad", "TemCartas") == 1 && AnteriorAd == 2) {
     PlayGiovanniAudio();
   }
 
@@ -151,7 +152,6 @@ function PlayCard(ElementoClicado, where, Tent = '') {
   } else {
     vez = "Opponent";
   }
-  
 }
 
 function DeleteCard(Elemento, where) {
@@ -168,13 +168,12 @@ function DeleteCard(Elemento, where) {
     if (where == "ad") {
       OpponentAchouCarta = true;
 
-      Elemento.classList.remove('Opponent');
+      Elemento.classList.remove("Opponent");
     }
 
     // Joga a carta
     JogarCarta(Elemento);
     return true;
-
   } else {
     // O usuário não consegue jogar esta carta
     return false;
@@ -212,13 +211,13 @@ function verificacoes(IDdoLugar, ver, arraypassada = []) {
       return false;
     }
   }
-  if(ver == 'TemCartas'){
-    let atual = document.getElementById(IDdoLugar)
-    return atual.children.length
+  if (ver == "TemCartas") {
+    let atual = document.getElementById(IDdoLugar);
+    return atual.children.length;
   }
 }
 
-function Opponent(Tentativa = 'nula') {
+function Opponent(Tentativa = "nula") {
   // console.log(`%cOpponent('${Tentativa}')`, CssFunction);
   let permissao = true;
   OpponentAchouCarta = false;
@@ -241,7 +240,7 @@ function Opponent(Tentativa = 'nula') {
     }
 
     if (!OpponentAchouCarta) {
-      pescar('ad');
+      pescar("ad");
       setTimeout(() => {
         PlayCard(maoOpponent.children[maoOpponent.children.length - 1], "ad", Tentativa); // Tenta jogar a carta
       }, 750);
@@ -254,44 +253,47 @@ function Opponent(Tentativa = 'nula') {
   }, 1000);
 }
 
-function pescar(where){
-  if(cartasPossiveis.length == 0){
+function pescar(where) {
+  if (cartasPossiveis.length == 0) {
     for (let d = 0; d < cores.length; d++) {
       let atual = cores[d];
       for (let c = 1; c <= 9; c++) {
         cartasPossiveis.push([atual, c]);
       }
     }
-  }else{
-    if(where == 'mao'){
-      let achou = 'nop'
-      for(let c = 0; c < UserHand.children.length; c++){
-        if((UserHand.children[c].classList[1] == mesaCartas.children[0].classList[1]) || (UserHand.children[c].innerHTML == mesaCartas.children[0].innerHTML)){
-          achou = 'yep';
+  } else {
+    if (where == "mao") {
+      let achou = "nop";
+      for (let c = 0; c < UserHand.children.length; c++) {
+        if (
+          UserHand.children[c].classList[1] == mesaCartas.children[0].classList[1] ||
+          UserHand.children[c].innerHTML == mesaCartas.children[0].innerHTML
+        ) {
+          achou = "yep";
         }
       }
-      if(achou == 'nop'){
+      if (achou == "nop") {
         CreateCard(where);
-        for(let c = 0; c < UserHand.children.length; c++){
-          if((UserHand.children[c].classList[1] == mesaCartas.children[0].classList[1]) || (UserHand.children[c].innerHTML == mesaCartas.children[0].innerHTML)){
-            achou = 'yep'
+        for (let c = 0; c < UserHand.children.length; c++) {
+          if (
+            UserHand.children[c].classList[1] == mesaCartas.children[0].classList[1] ||
+            UserHand.children[c].innerHTML == mesaCartas.children[0].innerHTML
+          ) {
+            achou = "yep";
           }
         }
-        if(achou == 'nop'){
+        if (achou == "nop") {
           UserCanPlay(false);
-          setTimeout(Opponent, 1500)
+          setTimeout(Opponent, 1500);
         }
       }
       UserCanPlay(true);
+      BotaoDePescar.classList.remove("TemQuePescar");
     } else {
       CreateCard(where);
     }
   }
-  
 }
-
-  
-
 
 /* FUNCOES */
 /* Random Number Between min and max */
@@ -304,39 +306,39 @@ function clamp(number, min, max) {
   return Math.max(min, Math.min(number, max));
 }
 
-function UserCanPlay(Can){
-  if(Can){
+function UserCanPlay(Can) {
+  if (Can) {
     UserHand.classList.remove("OpponentIsPlaying");
     BotaoDePescar.classList.remove("OpponentIsPlaying");
 
     let CantPlaySum = 0;
 
-    for(var i = 0; i < UserHand.children.length; i++){
+    for (var i = 0; i < UserHand.children.length; i++) {
       var card = UserHand.children[i];
 
       var CartaDaMesa = mesaCartas.children[0];
       var CorDela = CartaDaMesa.classList[1];
       var ValorDela = CartaDaMesa.innerHTML;
 
-      if(card.classList[1] == CorDela || card.innerHTML == ValorDela){
-        card.classList.remove('CantPlayThisCard');
+      if (card.classList[1] == CorDela || card.innerHTML == ValorDela) {
+        card.classList.remove("CantPlayThisCard");
       } else {
         CantPlaySum += 1;
-        card.classList.add('CantPlayThisCard');
+        card.classList.add("CantPlayThisCard");
       }
     }
 
     // UserHand.querySelectorAll('.CantPlayThisCard').length
 
-    if(CantPlaySum == UserHand.children.length){
+    if (CantPlaySum == UserHand.children.length) {
       // usuário tem que pescar
-      BotaoDePescar.classList.add('TemQuePescar');
+      BotaoDePescar.classList.add("TemQuePescar");
     } else {
-      BotaoDePescar.classList.remove('TemQuePescar');
+      BotaoDePescar.classList.remove("TemQuePescar");
     }
-
   } else {
     UserHand.classList.add("OpponentIsPlaying");
     BotaoDePescar.classList.add("OpponentIsPlaying");
+    BotaoDePescar.classList.remove("TemQuePescar");
   }
 }

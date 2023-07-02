@@ -6,7 +6,7 @@ function PlayCardAudio() {
   Audio.play();
 }
 
-function PlayGiovanniAudio(){
+function PlayGiovanniAudio() {
   // Som do Giovanni gritando
   let RandomAudio = RandomFrom(1, 4);
   let Audio = document.getElementById(`Giovanni${RandomAudio}`);
@@ -14,7 +14,7 @@ function PlayGiovanniAudio(){
   Audio.play();
 }
 
-function PlayTiagoAudio(){
+function PlayTiagoAudio() {
   // Som do Tiago Gritando
   let RandomAudio = RandomFrom(1, 4);
   let Audio = document.getElementById(`Tiago${RandomAudio}`);
@@ -22,13 +22,13 @@ function PlayTiagoAudio(){
   Audio.play();
 }
 
-function PlayWinAudio(){
+function PlayWinAudio() {
   let Win = document.getElementById("Win");
   Win.currenTime = 0;
   Win.play();
 }
 
-function PlayLoseAudio(){
+function PlayLoseAudio() {
   let Lose = document.getElementById("Lose");
   Lose.currenTime = 0;
   Lose.play();
