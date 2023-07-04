@@ -1,0 +1,39 @@
+#Debugger{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 128px;
+  margin-block: auto;
+  height: max-content;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 8px;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#Debugger *{
+  display: block;
+  padding: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+}
+
+#Debugger .TypeInput{
+  background: rgb(48, 48, 48);
+  color: rgb(227, 227, 227);
+  border-radius: 8px;
+  border: solid 2px rgba(255, 255, 255, 0.5);
+}
+
+#Debugger :focus{
+  outline: rgb(255, 255, 255) solid 2px;
+  box-shadow: 0px 0px 0px 4px rgb(48, 140, 216);
+}

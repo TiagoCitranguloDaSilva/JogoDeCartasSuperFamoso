@@ -30,7 +30,8 @@ var qtdeAcumulada = 0
 var CssFunction =
   "font-size: 1.5em; font-weight: 700; background-color: rgba(255, 255, 255, 0.5);" +
   "color: black; border-radius: 16px; padding-block: 0.25em; padding-inline: 0.5em;";
-// 
+  
+// On Start()
 function OnStart() {
   // Adiciona as cartas para sua variavel
   DefinirCartas()

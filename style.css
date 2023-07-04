@@ -51,7 +51,17 @@ section {
   overflow-y: visible;
   overflow-x: auto;
   min-height: 144px;
+  position: relative;
 }
+
+/* #mao::before{
+  content: 'Tiago';
+  position: absolute;
+  top: 0;
+  width: max-content;
+  transform: translateX(100%);
+  z-index: 9999999;
+} */
 
 #ad {
   pointer-events: none;
@@ -122,6 +132,13 @@ section {
   transition: all 0.2s cubic-bezier(0, 1.2, 1, 1.2), box-shadow 0s;
 }
 
+.TipoPescar{
+  font-size: 48px;
+
+  -webkit-text-stroke: 3px rgb(44, 44, 44);
+  -webkit-text-fill-color: white;
+}
+
 .CantPlayThisCard {
   filter: brightness(50%) saturate(50%) !important;
   opacity: 0.25 !important;
@@ -140,14 +157,14 @@ section {
   }
 }
 
-.Opponent {
+/*.Opponent {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0px transparent;
-  /* background-color: rgb(226, 120, 218) !important; */
+  * background-color: rgb(226, 120, 218) !important; *
   background: url(img/back\ Adver.png),
     radial-gradient(circle at center center, rgb(226, 120, 218), rgb(180, 75, 171));
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
-}
+}*/
 
 .CardItem:not(.Opponent, .CantPlayThisCard):hover {
   filter: brightness(90%) grayscale(5%);

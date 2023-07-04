@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="img/Icon.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="debug.css">
   </head>
   <body onclick="StartMusic()">
     <main>
@@ -17,6 +18,30 @@
       </div>
       <section id="mao"></section>
     </main>
+
+    <div id="Debugger">
+      <label for="Onde">Onde</label>
+
+      <select class="TypeInput" name="Onde" id="Onde">
+        <option value="mao">mao</option>
+        <option value="ad">ad</option>
+      </select>
+
+      <label for="Valor">Valor</label>
+
+      <input class="TypeInput" type="text" name="Valor" id="Valor">
+
+      <label for="Cor">Cor</label>
+
+      <select class="TypeInput" name="Cor" id="Cor">
+        <option value="amarelo">amarelo</option>
+        <option value="verde">verde</option>
+        <option value="vermelho">vermelho</option>
+        <option value="azul">azul</option>
+      </select>
+
+      <button onclick="CRIARCARTA()">Create!</button>
+    </div>
 
     <div class="audios">
       <audio src="audios/Giovanni/Uno Giovanni 1.ogg" id="Giovanni1" controls></audio>
