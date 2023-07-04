@@ -202,20 +202,10 @@ function PlayCard(ClickedElement, WhereItCame) {
     // NextPlay = "Opponent";
     console.warn("Usuário jogou");
 
-    // let WhereToTest = WhereItCame == "User" ? OpponentHand : UserHand;
+    let WhereToTest = WhereItCame == "User" ? OpponentHand : UserHand;
 
-    let ELETEMMAISDOIS = Verify(OpponentHand, "TryToGetMoreCards");
-    console.warn("Fez os baguio zuado");
+    Verify(WhereToTest, "TryToGetMoreCards");
 
-    // TESTANDO
-    console.log("----- TESTANDO ------");
-    if (ELETEMMAISDOIS) {
-      NextMove = "Opponent";
-      UpdateNextMove();
-    } else {
-      NextMove = "Opponent";
-      UpdateNextMove();
-    }
     // NextMove = "Opponent";
     // UpdateNextMove(NextMove);
     // console.warn(vez);
@@ -352,10 +342,10 @@ function Verify(Where, Type, Params = []) {
 
     return TestWhere.children.length;
   } else if (Type == "TryToGetMoreCards") {
-    // console.log("Verify(Where, Type, Params = [])");
-    // console.log(Where.id);
-    // console.log(Where);
-    // console.log(Type);
+    console.log("Verify(Where, Type, Params = [])");
+    console.log(Where.id);
+    console.log(Where);
+    console.log(Type);
     let CurrentWhereHasTwo = false;
 
     for (let i = 0; i < Where.children.length; i++) {
@@ -364,7 +354,6 @@ function Verify(Where, Type, Params = []) {
       let TemMaisDois = Verify(Where, "CanPlayTheCard", [Child, "+2"]);
       if (TemMaisDois) {
         CurrentWhereHasTwo = true;
-        console.log("ELE ACHOU UM  +2 NO " + Where.id);
         break;
       }
     }
@@ -381,17 +370,13 @@ function Verify(Where, Type, Params = []) {
       }
       QuantityToGet = 0;
 
-      console.log("Ali Não tem carta", Where.id);
       let WhereToTest = Where.id == "UserHand" ? "User" : "Opponent";
       NextMove = WhereToTest;
       UpdateNextMove();
-      return false;
     } else {
-      console.log("Tem carta", Where.id);
-      // let WhereToTest = Where.id == "UserHand" ? "User" : "Opponent";
-      // NextMove = WhereToTest;
-      // UpdateNextMove();
-      return true;
+      let WhereToTest = Where.id == "UserHand" ? "Opponent" : "User";
+      NextMove = WhereToTest;
+      UpdateNextMove();
     }
   } else {
     console.log(`%cVerify('${Where.id}', '${Type}', ${JSON.stringify(Params)})`);
@@ -472,7 +457,7 @@ function Opponent() {
       UpdateNextMove(NextMove);
     }, 1000);
   } else {
-    console.warn("adversario jogou");
+    // console.warn("Usuário jogou");
     // NextMove = "Opponent";
     // UpdateNextMove(NextMove);
   }
@@ -527,11 +512,11 @@ function GetNewCard(Where, Required = false) {
 
 function UpdateNextMove() {
   if (NextMove == "User") {
-    console.warn("Usuário vai jogar");
     UserCanPlay(true);
+    console.log("Usuário vai jogar");
   } else {
     UserCanPlay(false);
-    console.warn("Adversário vai jogar");
+    console.log("Adversário vai jogar");
     setTimeout(Opponent, 1500);
   }
 }

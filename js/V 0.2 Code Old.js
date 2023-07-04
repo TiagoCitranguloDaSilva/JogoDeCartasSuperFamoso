@@ -23,18 +23,17 @@ var OpponentAchouCarta = false;
 var GameOver = false;
 var Win = false;
 
-var jogou = 'mao';
+var jogou = "mao";
 
-var qtdeAcumulada = 0
+var qtdeAcumulada = 0;
 
 var CssFunction =
   "font-size: 1.5em; font-weight: 700; background-color: rgba(255, 255, 255, 0.5);" +
   "color: black; border-radius: 16px; padding-block: 0.25em; padding-inline: 0.5em;";
-  
-// On Start()
+//
 function OnStart() {
   // Adiciona as cartas para sua variavel
-  DefinirCartas()
+  DefinirCartas();
 
   // Dar as cartas do usuario
   for (let c = 1; c <= 7; c++) {
@@ -54,11 +53,11 @@ function OnStart() {
 
 OnStart();
 
-function DefinirCartas(){
+function DefinirCartas() {
   // As cores possiveis
   let cores = ["amarelo", "verde", "vermelho", "azul"];
   // Os valores possiveis
-  let valores = [1, 2, 3, 4, 5, 6, 7, 8, 9, '+2'];
+  let valores = [1, 2, 3, 4, 5, 6, 7, 8, 9, "+2"];
 
   // Colocando as cartas possiveis na array
   for (let d = 0; d < cores.length; d++) {
@@ -117,7 +116,7 @@ function CreateCard(WhereTo) {
   Card.innerHTML = valores[1];
   Card.setAttribute("data-content", valores[1]);
 
-  if(valores[1] === '+2'){
+  if (valores[1] === "+2") {
     Card.classList.add("TipoPescar");
   }
 
@@ -158,11 +157,11 @@ function PlayCard(ElementoClicado, where, Tent = "") {
   if (where == "mao" && Tirou == true) {
     vez = "User";
     UserCanPlay(false);
-    console.warn('Usuário jogou');
+    console.warn("Usuário jogou");
     console.warn(vez);
-    
-    if(vez == "User"){
-      console.warn('Adversário jogou');
+
+    if (vez == "User") {
+      console.warn("Adversário jogou");
       setTimeout(Opponent, 1500);
     }
 
@@ -191,12 +190,12 @@ function DeleteCard(Elemento, where) {
       Elemento.classList.remove("Opponent");
     }
 
-    if(jogou == 'ad'){
-      jogou = 'mao'
-    }else if(jogou == 'mao'){
-      jogou = 'ad'
+    if (jogou == "ad") {
+      jogou = "mao";
+    } else if (jogou == "mao") {
+      jogou = "ad";
     }
-    verificacoes(jogou, 'CartasDePesca')
+    verificacoes(jogou, "CartasDePesca");
 
     // Joga a carta
     JogarCarta(Elemento);
@@ -208,7 +207,6 @@ function DeleteCard(Elemento, where) {
 }
 
 function JogarCarta(carta) {
-  
   // console.log(`%cJogarCarta('${carta.classList}', '${carta.id}')`, CssFunction);
   // Apaga todas as cartas na mesa
   mesaCartas.innerHTML = "";
@@ -222,11 +220,11 @@ function JogarCarta(carta) {
   //   jogou = 'ad'
   // }
   // verificacoes(jogou, 'CartasDePesca')
-  console.log(jogou)
-  if(vez == 'Opponent'){
-    console.log('Ele saiu com a vez do Oponente')
+  console.log(jogou);
+  if (vez == "Opponent") {
+    console.log("Ele saiu com a vez do Oponente");
   } else {
-    console.log('Ele saiu com a vez do User')
+    console.log("Ele saiu com a vez do User");
   }
   // Toca o som da carta sendo jogada
   PlayCardAudio();
@@ -244,11 +242,11 @@ function verificacoes(IDdoLugar, ver, arraypassada = []) {
     let valorCarta = ElementoUsado.innerHTML;
 
     // if(valorMesa == '+2'){
-        // let atual = document.getElementById(IDdoLugar)
-        // for(let c = 0; c < atual.children.length; c++){
-          // if(atual.children[c].innerHTML == '+2')
-          // Ignora
-        // }
+    // let atual = document.getElementById(IDdoLugar)
+    // for(let c = 0; c < atual.children.length; c++){
+    // if(atual.children[c].innerHTML == '+2')
+    // Ignora
+    // }
     // }
 
     if (valorMesa == valorCarta || CorCarta == CorMesa) {
@@ -265,43 +263,43 @@ function verificacoes(IDdoLugar, ver, arraypassada = []) {
   }
 
   console.log(`verificacoes(${IDdoLugar}, ${ver}, ${arraypassada})`);
-  if(ver == 'CartasDePesca'){
-    let Atual = document.getElementById(IDdoLugar)
+  if (ver == "CartasDePesca") {
+    let Atual = document.getElementById(IDdoLugar);
     console.log(`(ver == 'CartasDePesca'`);
-    console.log('O atual é ', Atual);
-    let achou = 'nop'
+    console.log("O atual é ", Atual);
+    let achou = "nop";
     console.log(mesaCartas.children[0].innerHTML);
-    if(mesaCartas.children[0].innerHTML == '+2'){
-      qtdeAcumulada += 2
-      for(let c = 0; c < Atual.children.length; c++){
+    if (mesaCartas.children[0].innerHTML == "+2") {
+      qtdeAcumulada += 2;
+      for (let c = 0; c < Atual.children.length; c++) {
         console.log(c, Atual.children[c].innerHTML);
 
-        if(Atual.children[c].innerHTML == '+2'){
-          achou ='yep'
-          console.warn('ELE ACHOU SAPORRA');
+        if (Atual.children[c].innerHTML == "+2") {
+          achou = "yep";
+          console.warn("ELE ACHOU SAPORRA");
         }
       }
 
       console.log(achou);
 
       console.log(vez);
-      vez = (IDdoLugar == 'mao') ? 'ad' : 'mao';
+      vez = IDdoLugar == "mao" ? "ad" : "mao";
       console.log(vez);
 
-      if(achou == 'nop'){
-        console.log('O ' + IDdoLugar + ' não tinha +2') 
-        for(let c = 0; c < qtdeAcumulada; c++){
+      if (achou == "nop") {
+        console.log("O " + IDdoLugar + " não tinha +2");
+        for (let c = 0; c < qtdeAcumulada; c++) {
           pescar(IDdoLugar, true);
-        } 
+        }
         qtdeAcumulada = 0;
 
-        if(IDdoLugar == 'mao'){
+        if (IDdoLugar == "mao") {
           vez = "Opponent";
         } else {
           vez = "User";
         }
       } else {
-        if(IDdoLugar == 'mao'){
+        if (IDdoLugar == "mao") {
           vez = "User";
         } else {
           vez = "Opponent";
@@ -349,10 +347,10 @@ function Opponent(Tentativa = "nula") {
 
 function pescar(where, obrigatoriopescar = false) {
   if (cartasPossiveis.length == 0) {
-    DefinirCartas()
+    DefinirCartas();
   } else {
     if (where == "mao") {
-      if(obrigatoriopescar){
+      if (obrigatoriopescar) {
         CreateCard(where);
         // UserCanPlay(true);
       } else {
@@ -415,7 +413,7 @@ function UserCanPlay(Can) {
       var ValorDela = CartaDaMesa.innerHTML;
       // card.classList.contains('TipoPescar')
 
-      if ((card.classList[1] == CorDela || card.innerHTML == ValorDela)) {
+      if (card.classList[1] == CorDela || card.innerHTML == ValorDela) {
         card.classList.remove("CantPlayThisCard");
       } else {
         CantPlaySum += 1;
@@ -438,9 +436,8 @@ function UserCanPlay(Can) {
   }
 }
 
-
-function FinishGame(){
-  if(Win){
+function FinishGame() {
+  if (Win) {
     alert("Parabéns, você ganhou!");
   } else {
     alert("O adversário ganhou!");
@@ -454,17 +451,16 @@ function FinishGame(){
   // }, 2000);
 }
 
-
-function CRIARCARTA(){
-  var Onde = document.getElementById('Onde');
-  var Valor = document.getElementById('Valor');
-  var Cor = document.getElementById('Cor');
+function CRIARCARTA() {
+  var Onde = document.getElementById("Onde");
+  var Valor = document.getElementById("Valor");
+  var Cor = document.getElementById("Cor");
 
   Onde = Onde.selectedOptions[0].innerText;
   Valor = Valor.value;
   Cor = Cor.selectedOptions[0].innerText;
 
-  // -- 
+  // --
 
   // O lugar atual
   let lugarAtual = document.getElementById(Onde);
@@ -492,7 +488,7 @@ function CRIARCARTA(){
   Card.innerHTML = valores[1];
   Card.setAttribute("data-content", valores[1]);
 
-  if(valores[1] === '+2'){
+  if (valores[1] === "+2") {
     Card.classList.add("TipoPescar");
   }
 

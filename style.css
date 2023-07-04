@@ -24,7 +24,7 @@ section {
   position: relative;
 }
 
-#buttons {
+#Middle {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -34,16 +34,15 @@ section {
   box-shadow: inset 0px 0px 32px 8px rgba(0, 0, 0, 0.75);
 }
 
-#pescar {
+#GetCard {
   justify-self: end;
 }
 
-#cartas {
+#TableCards {
   pointer-events: none;
 }
 
-#mao,
-#ad {
+.Hand {
   background: linear-gradient(0deg, rgb(127, 60, 21), rgb(184, 98, 48));
   display: flex;
   justify-content: center;
@@ -63,7 +62,10 @@ section {
   z-index: 9999999;
 } */
 
-#ad {
+/*OpponentHand
+UserHand*/
+
+#OpponentHand {
   pointer-events: none;
   background: linear-gradient(90deg, rgb(127, 60, 21), rgb(184, 98, 48));
 }
@@ -132,7 +134,7 @@ section {
   transition: all 0.2s cubic-bezier(0, 1.2, 1, 1.2), box-shadow 0s;
 }
 
-.TipoPescar{
+.TipoPescar {
   font-size: 48px;
 
   -webkit-text-stroke: 3px rgb(44, 44, 44);

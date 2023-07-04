@@ -7,29 +7,29 @@
     <link rel="shortcut icon" href="img/Icon.png" type="image/x-icon" />
 
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="debug.css">
+    <link rel="stylesheet" href="debug.css" />
   </head>
   <body onclick="StartMusic()">
     <main>
-      <section id="ad"></section>
-      <div id="buttons">
-        <button onclick="pescar('mao')" id="pescar">Pescar</button>
-        <section id="cartas"></section>
+      <section class="Hand" id="OpponentHand"></section>
+      <div id="Middle">
+        <button onclick="GetNewCard('User')" id="GetCard">Pescar</button>
+        <section id="TableCards"></section>
       </div>
-      <section id="mao"></section>
+      <section class="Hand" id="UserHand"></section>
     </main>
 
     <div id="Debugger">
       <label for="Onde">Onde</label>
 
       <select class="TypeInput" name="Onde" id="Onde">
-        <option value="mao">mao</option>
-        <option value="ad">ad</option>
+        <option value="UserHand">UserHand</option>
+        <option value="OpponentHand">OpponentHand</option>
       </select>
 
       <label for="Valor">Valor</label>
 
-      <input class="TypeInput" type="text" name="Valor" id="Valor">
+      <input class="TypeInput" type="text" name="Valor" id="Valor" />
 
       <label for="Cor">Cor</label>
 
@@ -64,7 +64,8 @@
       <audio src="audios/Lose.mp3" id="Lose" controls></audio>
     </div>
 
-    <script src="js/Code.js"></script>
     <script src="js/SoundsEFX.js"></script>
+    <script src="js/Functions.js"></script>
+    <script src="js/Code.js"></script>
   </body>
 </html>
