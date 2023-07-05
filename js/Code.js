@@ -200,22 +200,30 @@ function PlayCard(ClickedElement, WhereItCame) {
   if (WhereItCame == "User" && PlayedThatCard) {
     // vez = "User";
     // NextPlay = "Opponent";
-    console.warn("Usuário jogou");
+    // console.warn("Usuário jogou");
 
     // let WhereToTest = WhereItCame == "User" ? OpponentHand : UserHand;
 
-    let ELETEMMAISDOIS = Verify(OpponentHand, "TryToGetMoreCards");
-    console.warn("Fez os baguio zuado");
+    // TESTANDO a
+    // console.log("----- UpdateNextMove ADVERSARIO ------");
 
-    // TESTANDO
-    console.log("----- TESTANDO ------");
-    if (ELETEMMAISDOIS) {
-      NextMove = "Opponent";
-      UpdateNextMove();
-    } else {
-      NextMove = "Opponent";
-      UpdateNextMove();
-    }
+    NextMove = "Opponent";
+    UpdateNextMove();
+
+    // setTimeout(() => {
+    //   console.log("----- 2s passou ------");
+    //   let ELETEMMAISDOIS = Verify(OpponentHand, "TryToGetMoreCards");
+    //   console.warn("Fez os baguio zuado");
+
+    //   if (ELETEMMAISDOIS) {
+    //     NextMove = "Opponent";
+    //     UpdateNextMove();
+    //   } else {
+    //     NextMove = "Opponent";
+    //     UpdateNextMove();
+    //   }
+    // }, 2000);
+
     // NextMove = "Opponent";
     // UpdateNextMove(NextMove);
     // console.warn(vez);
@@ -237,6 +245,9 @@ function PlayCard(ClickedElement, WhereItCame) {
     // setTimeout(Opponent, 1500);
     // }
   }
+
+  // if (WhereItCame == "Opponent" && PlayedThatCard) {
+  // }
 }
 
 function TryToPlayTheCard(CardToPlay, TestWhere) {
@@ -272,16 +283,16 @@ function TryToPlayTheCard(CardToPlay, TestWhere) {
     let ValorMesa = CurrentTableCard.innerHTML;
     let LastPlay = CurrentTableCard.classList[2];
 
-    console.log(LastPlay);
+    // console.log(LastPlay);
 
     if (ValorMesa == "+2") {
-      console.log("ULTIMA CARTA É +2");
+      // console.log("ULTIMA CARTA É +2");
       QuantityToGet += 2;
 
       let WhereToTest = TestWhere.id == "UserHand" ? OpponentHand : UserHand;
 
-      console.log(`ELE VEIO DE`, TestWhere);
-      console.log(`ELE VAI TESTAR ALI Ó`, WhereToTest);
+      // console.log(`ELE VEIO DE`, TestWhere);
+      // console.log(`ELE VAI TESTAR ALI Ó`, WhereToTest);
       Verify(WhereToTest, "TryToGetMoreCards");
     }
   }
@@ -293,13 +304,13 @@ function TryToPlayTheCard(CardToPlay, TestWhere) {
 
 function Verify(Where, Type, Params = []) {
   if (Type == "CanPlayTheCard") {
-    if (Params[1] == "+2") {
+    if (Params[1] === "+2") {
       let ParamPassed = Params[0];
-      let CurrentTableCard = TableCards.children[0];
+      // let CurrentTableCard = TableCards.children[0];
 
       let ValorCarta = ParamPassed.innerHTML;
 
-      if (ValorCarta == "+2") {
+      if (ValorCarta === "+2") {
         // A CARTA É UM +2
         return true;
       } else {
@@ -357,14 +368,17 @@ function Verify(Where, Type, Params = []) {
     // console.log(Where);
     // console.log(Type);
     let CurrentWhereHasTwo = false;
+    let CardElement = null;
+    let Times = Where.children.length;
 
-    for (let i = 0; i < Where.children.length; i++) {
+    for (let i = 0; i < Times; i++) {
       const Child = Where.children[i];
 
       let TemMaisDois = Verify(Where, "CanPlayTheCard", [Child, "+2"]);
       if (TemMaisDois) {
+        CardElement = Child;
         CurrentWhereHasTwo = true;
-        console.log("ELE ACHOU UM  +2 NO " + Where.id);
+        console.log("ELE ACHOU UM +2 NO " + Where.id);
         break;
       }
     }
@@ -381,17 +395,23 @@ function Verify(Where, Type, Params = []) {
       }
       QuantityToGet = 0;
 
-      console.log("Ali Não tem carta", Where.id);
-      let WhereToTest = Where.id == "UserHand" ? "User" : "Opponent";
-      NextMove = WhereToTest;
-      UpdateNextMove();
-      return false;
+      // console.log("Ali Não tem carta", Where.id);
+      // let WhereToTest = Where.id == "UserHand" ? "Opponent" : "User";
+      // NextMove = WhereToTest;
+      // UpdateNextMove();
+      return [false, null];
     } else {
-      console.log("Tem carta", Where.id);
+      // console.log("Tem carta", Where.id);
+
       // let WhereToTest = Where.id == "UserHand" ? "User" : "Opponent";
       // NextMove = WhereToTest;
       // UpdateNextMove();
-      return true;
+      // if (Where.id == "Opponent") {
+      if (QuantityToGet > 0) {
+        return [true, CardElement];
+      } else {
+        return [false, null];
+      }
     }
   } else {
     console.log(`%cVerify('${Where.id}', '${Type}', ${JSON.stringify(Params)})`);
@@ -427,54 +447,73 @@ function PlayThatCard(Card) {
 }
 
 function Opponent() {
+  console.log("%cOpponent()", CssFunction);
   OpponentFoundCard = false;
 
-  let Trying = 0;
-  let OpponentCardsLength = OpponentHand.children.length;
+  if (TableCards.children[0].innerText == "+2") {
+    // Tem uma carta de mais dois na mesa
+    console.log("Tem uma carta de mais dois na mesa");
 
-  while (Trying < OpponentCardsLength) {
-    const TestCard = OpponentHand.children[Trying];
-    // console.log(TestCard);
-    // console.log(OpponentFoundCard);
+    // Verifica se o adverário tem uma carta de mais dois
+    let CurrentWhereHasTwo = false;
 
-    PlayCard(TestCard, "Opponent"); // Tenta jogar a carta
-    if (OpponentFoundCard) {
-      console.log("Opponent Found THE Card, and played it!!");
-      break;
-    }
+    CurrentWhereHasTwo = Verify(OpponentHand, "TryToGetMoreCards");
 
-    Trying++;
-  }
+    if (CurrentWhereHasTwo[0]) {
+      console.log("O adversário tem uma carta de mais dois");
 
-  if (!OpponentFoundCard) {
-    console.log("Opponent Didn't Found THE Card");
-    GetNewCard("Opponent", true);
-    setTimeout(() => {
-      PlayCard(OpponentHand.children[OpponentHand.children.length - 1], "Opponent"); // Tenta jogar a carta
-    }, 750);
-  }
+      console.log("Ele vai jogar");
+      console.log(CurrentWhereHasTwo[1]);
+      console.log([CurrentWhereHasTwo[1]]);
 
-  let CurrentWhereHasTwo = false;
-  for (let i = 0; i < UserHand.children.length; i++) {
-    const Child = UserHand.children[i];
+      PlayCard(CurrentWhereHasTwo[1], "Opponent"); // Joga a carta
 
-    let TemMaisDois = Verify(UserHand, "CanPlayTheCard", [Child, "+2"]);
-    if (TemMaisDois) {
-      CurrentWhereHasTwo = true;
-      break;
-    }
-  }
-
-  if (CurrentWhereHasTwo || QuantityToGet == 0) {
-    setTimeout(() => {
-      console.warn("Adversário jogou");
       NextMove = "User";
-      UpdateNextMove(NextMove);
-    }, 1000);
+      UpdateNextMove();
+    } else {
+      console.log("O adversário NÃO tem uma carta de mais dois");
+
+      NextMove = "User";
+      UpdateNextMove();
+    }
   } else {
-    console.warn("adversario jogou");
-    // NextMove = "Opponent";
-    // UpdateNextMove(NextMove);
+    console.log("Tem uma carta QUE NÃO É de mais dois na mesa");
+
+    let Trying = 0;
+    let OpponentCardsLength = OpponentHand.children.length;
+
+    // Analisa todas as cartas do adversário e vê se ele consegue jogar
+    while (Trying < OpponentCardsLength) {
+      const TestCard = OpponentHand.children[Trying];
+      // console.log(TestCard);
+      // console.log(OpponentFoundCard);
+
+      PlayCard(TestCard, "Opponent"); // Tenta jogar a carta
+      if (OpponentFoundCard) {
+        // console.log("Opponent Found THE Card, and played it!!");
+        break;
+      }
+
+      Trying++;
+    }
+
+    // Se ele não conseguir jogar nenhuma
+    if (!OpponentFoundCard) {
+      console.log("Opponent Didn't Found THE Card");
+      // Pesca e tenta jogar a pescada
+      GetNewCard("Opponent", true);
+      setTimeout(() => {
+        PlayCard(OpponentHand.children[OpponentHand.children.length - 1], "Opponent"); // Tenta jogar a carta
+      }, 750);
+    }
+
+    // Se ele conseguir ou não conseguir passa a vez para o usuário
+
+    console.warn("Adversário jogou");
+    setTimeout(() => {
+      NextMove = "User";
+      UpdateNextMove();
+    }, 1000);
   }
 }
 
