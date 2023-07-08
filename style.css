@@ -143,7 +143,11 @@ section {
 .Opponent {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0px transparent;
+<<<<<<< Updated upstream
   /* background-color: rgb(226, 120, 218) !important; */
+=======
+  background-color: rgb(226, 120, 218) !important;
+>>>>>>> Stashed changes
   background: url(img/back\ Adver.png),
     radial-gradient(circle at center center, rgb(226, 120, 218), rgb(180, 75, 171));
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
