@@ -24,7 +24,7 @@ section {
   position: relative;
 }
 
-#buttons {
+#Middle {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
@@ -34,26 +34,39 @@ section {
   box-shadow: inset 0px 0px 32px 8px rgba(0, 0, 0, 0.75);
 }
 
-#pescar {
+#GetCard {
   justify-self: end;
 }
 
-#cartas {
+#TableCards {
   pointer-events: none;
 }
 
-#mao,
-#ad {
+.Hand {
   background: linear-gradient(0deg, rgb(127, 60, 21), rgb(184, 98, 48));
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-y: visible;
-  overflow-x: auto;
+  flex-wrap: wrap;
+  /* overflow-y: visible; */
+  /* overflow-x: auto; */
   min-height: 144px;
+  position: relative;
 }
 
-#ad {
+/* #mao::before{
+  content: 'Tiago';
+  position: absolute;
+  top: 0;
+  width: max-content;
+  transform: translateX(100%);
+  z-index: 9999999;
+} */
+
+/*OpponentHand
+UserHand*/
+
+#OpponentHand {
   pointer-events: none;
   background: linear-gradient(90deg, rgb(127, 60, 21), rgb(184, 98, 48));
 }
@@ -97,10 +110,11 @@ section {
 
 .CardItem {
   width: 80px;
+  height: 128px;
   flex: 0 0 80px;
   border-radius: 6px;
   margin: 8px;
-  height: 128px;
+
   cursor: pointer;
   text-align: center;
   display: flex;
@@ -122,6 +136,26 @@ section {
   transition: all 0.2s cubic-bezier(0, 1.2, 1, 1.2), box-shadow 0s;
 }
 
+.TipoPescar {
+  font-size: 48px;
+
+  -webkit-text-stroke: 0px rgba(44, 44, 44, 0);
+  -webkit-text-fill-color: rgba(255, 255, 255, 0);
+
+  background: url(img/pescar.png);
+}
+
+.CardItem.TipoPescar::before {
+  top: 0.2em;
+  left: 0.2em;
+}
+
+.CardItem.TipoPescar::after {
+  bottom: 0.2em;
+  right: 0.2em;
+  transform: rotate(180deg);
+}
+
 .CantPlayThisCard {
   filter: brightness(50%) saturate(50%) !important;
   opacity: 0.25 !important;
@@ -140,14 +174,14 @@ section {
   }
 }
 
-.Opponent {
+/*.Opponent {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0px transparent;
   background-color: rgb(226, 120, 218) !important;
   background: url(img/back\ Adver.png),
     radial-gradient(circle at center center, rgb(226, 120, 218), rgb(180, 75, 171));
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
-}
+}*/
 
 .CardItem:not(.Opponent, .CantPlayThisCard):hover {
   filter: brightness(90%) grayscale(5%);

@@ -58,7 +58,7 @@ function StartMusic() {
   Music.loop = "true";
   Music.volume = 0.3;
   // Music.playbackRate = 1;
-  Music.play();
+  // Music.play();
 
   document.getElementsByTagName("body")[0].removeAttribute("onclick");
 }
