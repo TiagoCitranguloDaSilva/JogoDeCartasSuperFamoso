@@ -174,14 +174,14 @@ UserHand*/
   }
 }
 
-/*.Opponent {
+.Opponent {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke: 0px transparent;
   background-color: rgb(226, 120, 218) !important;
   background: url(img/back\ Adver.png),
     radial-gradient(circle at center center, rgb(226, 120, 218), rgb(180, 75, 171));
   box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.5);
-}*/
+}
 
 .CardItem:not(.Opponent, .CantPlayThisCard):hover {
   filter: brightness(90%) grayscale(5%);
