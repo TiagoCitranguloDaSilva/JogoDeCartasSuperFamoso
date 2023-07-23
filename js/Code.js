@@ -74,6 +74,7 @@ function DefineCards() {
   }
 }
 
+
 function RandomizeValues() {
   // Pega um número aleatorio
   let NumeroAleatorio = RandomFrom(0, PossibleCards.length - 1);
