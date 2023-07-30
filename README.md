@@ -4,7 +4,7 @@
 
   ![image](https://github.com/TiagoCitranguloDaSilva/JogoDeCartasSuperFamoso/assets/130724423/784a7740-955b-4690-a0e9-d506e03054a0)
 
-    Apesar do projeto não ter conseguido ser uma cópia perfeita, foi muito trabalhoso e recompensador, foram horas de dedicação e estresse, mas valeu a pena. Se quiser jogar o jogo sem ter que baixa-lo, ele está no GitHub pages no link:
+Apesar do projeto não ter conseguido ser uma cópia perfeita, foi muito trabalhoso e recompensador, foram horas de dedicação e estresse, mas valeu a pena. Se quiser jogar o jogo sem ter que baixa-lo, ele está no GitHub pages no link:
     https://tiagocitrangulodasilva.github.io/JogoDeCartasSuperFamoso/
 
 
